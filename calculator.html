@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <style>
+        *{
+            margin: 0px;
+            padding: 0px;
+        }
+        #d0{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        #d1{
+            height: fit-content;
+            width: fit-content;
+            border: 6px solid slategray;
+            box-shadow: 2px 2px 5px 4px black;
+            margin-top: 12px;
+            
+        } 
+        #out{
+            border: 3px solid black;
+            height:690px;
+            width:490px;
+        }
+        #sc{
+            border:2px solid grey;
+            height:115px;
+            background-color: black;
+            color: white;
+            font-size: 2vw;
+            padding-left: 4px;
+        }
+        #ks{
+            border: 2px solid grey;
+            height:570px;
+            background-color: cadetblue;
+            display: grid;
+            grid-template-rows: repeat(5, 7.68vw);
+            grid-template-columns: repeat(4, 8.2vw);
+            position: relative;
+        }
+        .box {
+            border: 2px solid black;
+            font-size: 4vw;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+    <div id="d0">
+    <div id="d1">
+    <div id="out">
+        <div id="sc"></div>
+        <div id="ks">
+            <div class="box">C</div>
+            <div class="box">%</div>
+            <div class="box">X</div>
+            <div class="box">/</div>
+            <div class="box">7</div>
+            <div class="box">8</div>
+            <div class="box">9</div>
+            <div class="box">*</div>
+            <div class="box">4</div>
+            <div class="box">5</div>
+            <div class="box">6</div>
+            <div class="box">-</div>
+            <div class="box">1</div>
+            <div class="box">2</div>
+            <div class="box">3</div>
+            <div class="box">+</div>
+            <div class="box">0</div>
+            <div class="box">00</div>
+            <div class="box">.</div>
+            <div class="box">=</div>
+        </div>
+    </div>
+</div>
+</div>
+     <script>
+        
+        document.querySelectorAll(".box").forEach(function(button){
+            button.addEventListener("click", function(){
+                var buttonText = button.innerText;
+                var displayValue = document.getElementById("sc").innerText;
+                if (buttonText === "="){
+                    try{
+                        var result = eval(displayValue);
+                        document.getElementById("sc").innerText=result;
+                    }
+                    catch(error){
+                        document.getElementById("sc").innerText="Error";
+                    }
+                }
+                else if(buttonText === "C"){
+                    document.getElementById("sc").innerText='';
+                }
+                else if(buttonText === "X"){
+                    document.getElementById("sc").innerText=displayValue.slice(0,-1);
+                }
+                else {
+                    document.getElementById('sc').innerText += buttonText;
+                }
+            });
+        });
+       
+</script>
+</body>
+</html>
